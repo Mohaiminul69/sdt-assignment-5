@@ -45,6 +45,9 @@
               <a class="list-none cursor-pointer" href="{% url 'profile' %}"
                 ><li>Profile</li></a
               >
+              <a class="list-none cursor-pointer" href="{% url 'deposit' %}"
+                ><li>Deposit Money</li></a
+              >
               <li>
                 <form method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
