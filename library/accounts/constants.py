@@ -1,9 +1,8 @@
 ACCOUNT_TYPE = (
-    ("Student", "Student"),
-    ("Teacher", "Teacher"),
+    ('Savings', 'Savings'),
+    ('Current', 'Current'),
 )
-
 GENDER_TYPE = (
-    ("Male", "Male"),
-    ("Female", "Female"),
+    ('Male', 'Male'),
+    ('Female', 'Female'),
 )

@@ -1,0 +1,13 @@
+<h2>Hi {{ user.first_name|title }} {{ user.last_name|title }},</h2>
+
+<p>
+  Your have successfully borrowed a Book. After successful transaction your
+  account balance is:
+  <!--  -->
+  ${{ user.account.balance }}.
+</p>
+
+<p>
+  Thanks, <br />
+  Book Lib
+</p>

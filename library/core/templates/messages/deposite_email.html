@@ -1,0 +1,10 @@
+<h2>Hi {{ user.first_name|title }} {{ user.last_name|title }},</h2>
+<p>Your deposit request for ${{ amount }} has been successful.</p>
+<p>
+  The amount is transfered to your account no {{ user.account.account_no }}.
+</p>
+<p>Your new balance is ${{ user.account.balance }}</p>
+<p>
+  Thanks, <br />
+  Book Lib
+</p>

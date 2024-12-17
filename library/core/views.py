@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from books.models import BookModel, BookCategoryModel
 
 
-# Create your views here.
-class HomeView(TemplateView):
-    template_name = "index.html"
+def home(request, category_slug = None):
+    bookCategory = BookCategoryModel.objects.all()
+    book = BookModel.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    if category_slug is not None:
+        category = BookCategoryModel.objects.get(slug = category_slug)
+        book = BookModel.objects.filter(category = category)
+
+
+    return render(request, 'index.html', {'category' : bookCategory, 'book': book})

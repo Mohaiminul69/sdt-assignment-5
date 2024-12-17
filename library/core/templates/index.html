@@ -1,37 +1,79 @@
-{% extends 'base.html' %} {% load static %} {% block page_title %} Library
-Management - Home {% endblock %} {% block content %}
-<div class="container mx-auto">
-  <div class="min-h-[750px] flex items-center my-10">
-    <div class="flex flex-col-reverse lg:flex-row items-center">
-      <div
-        class="w-[100%] lg:w-[50%] lg:bg-gray-700 px-12 py-10 text-white flex flex-col shadow-lg rounded-xl"
-      >
-        <h6 class="font-bold text-2xl -mb-1">Welcome to</h6>
-        <h1 class="font-bold" style="font-size: 2.55rem">
-          Library Management.
-        </h1>
-        <div class="mt-4 mb-10">
-          <p class="text-[17px] leading-slug">
-            Our Library Management System provides an intuitive platform for
-            users to explore, borrow, and review books. Users can filter books
-            by categories, view detailed descriptions, and see user reviews.
-            Account creation, login, and logout features are available, along
-            with the ability to deposit funds for book borrowing. The system
-            tracks borrowing history and sends automated email notifications for
-            successful transactions, ensuring users stay informed about their
-            account activities. A seamless and efficient library experience for
-            all.
-          </p>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="my-12">
+  <div class="py-12 px-6 bg-cyan-700 rounded text-white">
+    <h1 class="font-bold text-4xl mb-4">Book Lib</h1>
+    <p class="w-50 leading-normal mb-4">
+      An online library management system streamlines the organization,
+      borrowing, and tracking of library resources, providing users with easy
+      access to a wide range of books and materials. It allows library staff to
+      efficiently manage cataloging, membership, and circulation while enabling
+      users to search for and reserve items remotely.
+      <br />
+      <br />
+      This system enhances user experience, reduces manual workload, and ensures
+      better resource availability and utilization. With features like digital
+      records, overdue notifications, and real-time updates, it offers a modern
+      and convenient solution for both librarians and readers.
+    </p>
+  </div>
+</div>
+
+<button
+  type="button"
+  class="inline-flex items-center px-5 py-3 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+>
+  Books Found
+  <span
+    class="inline-flex items-center mx-2 justify-center w-4 h-4 ms-2 text-xs font-semibold text-teal-800 bg-teal-200 rounded-full"
+  >
+    {{ book | length }}
+  </span>
+</button>
+
+<br />
+<a
+  href=" {% url 'home' %} "
+  class="btn btn-outline-secondary hover:text-white me-1 bg-teal-600 px-2 py-1 text-white rounded text-sm"
+  >All</a
+>
+{% for i in category %}
+<a
+  href=" {% url 'category_wise_books' i.slug %} "
+  class="me-2 bg-teal-600 px-2 py-1 text-white rounded text-sm"
+  >{{ i|title }}</a
+>
+{% endfor %}
+<div class="container">
+  <div class="py-5">
+    <div class="grid grid-cols-4 gap-5">
+      {% for b in book %}
+      <div class="text-white card bg-cyan-800 shadow-md rounded-md p-5 my-2">
+        <img
+          src="{{ b.book_img.url }}"
+          class="object-cover rounded card-img-top h-[350px]"
+        />
+        <div class="card-body mt-5">
+          <h5 class="card-title font-bold">{{ b.book_name }}</h5>
+
+          <span class="card-title font-bold"> Category: </span>
+          <span> {{ b.category|title }} </span> <br />
+          <span class="card-text font-bold"> Price: </span>
+          <span> ${{ b.price }} </span> <br />
+          <span class="card-text font-bold"> Quantity: </span>
+          <span> {{ b.quantity }} </span> <br />
+          <p class="card-text">{{ b.description | truncatechars:70 }}</p>
+          <a href=" {% url 'bookDetails' b.id %} " class="">
+            <button
+              class="bg-amber-400 hover:bg-amber-600 text-gray-950 font-bold py-1 mt-2 px-3 rounded text-sm"
+            >
+              Details
+            </button>
+          </a>
         </div>
       </div>
-      <div class="w-[100%] lg:w-[50%] p-8 mb-8 lg:mb-0">
-        <img
-          src="{% static './images/library.png' %}"
-          alt="Library"
-          class="w-full"
-        />
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
+
 {% endblock %}
