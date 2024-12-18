@@ -20,7 +20,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = ["https://Book Lib.onrender.com", "https://*.127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://book-lib-library.onrender.com", "https://*.127.0.0.1"]
 
 # Application definition
 
@@ -99,10 +99,6 @@ DATABASES = {
         default="postgresql://book_lib_user:FoQ2fUqp6T2OUSXREEPDnNF3iKEQIguj@dpg-ctheql5umphs73fnhd40-a.oregon-postgres.render.com/book_lib",
     )
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
