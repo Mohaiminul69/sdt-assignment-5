@@ -95,15 +95,21 @@ WSGI_APPLICATION = "lms_project.wsgi.application"
 # }
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": env("DB_NAME"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASSWORD"),
+#         "HOST": env("DB_HOST"),
+#         "PORT": env("DB_PORT"),
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env("DB_PORT"),
-    }
+    "default": dj_database_url.config(
+        default="postgresql://book_lib_user:FoQ2fUqp6T2OUSXREEPDnNF3iKEQIguj@dpg-ctheql5umphs73fnhd40-a.oregon-postgres.render.com/book_lib",
+    )
 }
 
 
