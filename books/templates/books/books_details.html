@@ -4,11 +4,6 @@
 <div
   class="flex text-white mt-10 flex-col items-center bg-white rounded-lg overflow-hidden shadow md:flex-row dark:bg-cyan-800"
 >
-  <img
-    class="object-cover rounded-lg h-96"
-    src="{{ book.book_img.url }}"
-    alt=""
-  />
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5
       class="mb-2 text-2xl font-bold tracking-tight text-cyan-900 dark:text-white"
@@ -40,7 +35,7 @@
       <a
         href=" {% url 'borrowBook' book.id %} "
         type="button"
-        class="px-2 py-1 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 ms-5"
+        class="px-2 py-1 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg dark:bg-teal-600 ms-5"
         >Borrow Book</a
       >
       {% else %}
@@ -53,7 +48,7 @@
 <div class="mt-10">
   <button
     type="button"
-    class="inline-flex items-center px-5 py-3 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+    class="inline-flex items-center px-5 py-3 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg dark:bg-teal-600 dark:focus:ring-teal-800"
   >
     Reviews
     <span
@@ -65,7 +60,7 @@
 </div>
 
 <div
-  class="flex shadow-md mt-10 flex-col items-start bg-white border border-cyan-200 rounded-lg shadow md:flex-row hover:bg-cyan-100 dark:border-cyan-700 dark:bg-cyan-800 dark:hover:bg-cyan-700"
+  class="flex shadow-md mt-10 flex-col items-start bg-white border border-cyan-200 rounded-lg shadow md:flex-row dark:border-cyan-700 dark:bg-cyan-800"
 >
   <div class="w-full md:h-auto md:w-1/2">
     {% if form.non_field_errors %} {% for error in form.non_field_errors %}
@@ -86,8 +81,9 @@
           method="post"
           class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
-          {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{
-          hidden_field.errors }} {{ hidden_field }} {% endfor %}
+          {% csrf_token %} {% for hidden_field in form.hidden_fields %}
+          <!--  -->
+          {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
 
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
@@ -122,17 +118,17 @@
 
           <div class="flex items-center justify-between">
             <button
-              class="hover:bg-blue-900 bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-teal-600 text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
-              Add Comment
+              Add Review
             </button>
           </div>
         </form>
         {% else %}
         <button
           disabled
-          class="inline-flex items-center px-5 py-3 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+          class="inline-flex items-center px-5 py-3 mb-5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg dark:bg-teal-600"
         >
           First Borrow this Book
         </button>
@@ -143,11 +139,10 @@
 
   <div class="md:w-1/2 flex flex-wrap justify-between gap-2 p-4 leading-normal">
     {% for comment in comments %}
-    <div class="w-full p-5 shadow-md flex flex-col gap-2">
+    <div class="bg-white w-full p-5 shadow-md flex flex-col gap-2">
       <div class="flex justify-between">
         <strong>
-          {{ comment.commented_by.first_name }} {{
-          comment.commented_by.last_name }}
+          {{comment.commented_by.first_name}} {{comment.commented_by.last_name}}
         </strong>
         <span> {{ comment.timestamp|date:"F d, Y h:i A" }} </span>
       </div>
